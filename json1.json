@@ -1,0 +1,26 @@
+[
+  {
+    "title": "News 1",
+    "image": "https://example.com/image1.jpg",
+    "link": "https://example.com/news1",
+    "date": "2025-10-15"
+  },
+  {
+    "title": "News 2",
+    "image": "https://example.com/image2.jpg",
+    "link": "https://example.com/news2",
+    "date": "2025-10-14"
+  },
+  {
+    "title": "News 3",
+    "image": "https://example.com/image2.jpg",
+    "link": "https://example.com/news2",
+    "date": "2025-10-13"
+  },
+  {
+    "title": "News 4",
+    "image": "https://example.com/image2.jpg",
+    "link": "https://example.com/news2",
+    "date": "2025-10-12"
+  }
+]
