@@ -1,25 +1,25 @@
 [
   {
     "title": "News 1",
-    "image": "https://example.com/image1.jpg",
+    "image": "https://vidi-corp.com/wp-content/uploads/2023/11/PowerBI_scalable-3.svg",
     "link": "https://example.com/news1",
     "date": "2025-10-15"
   },
   {
     "title": "News 2",
-    "image": "https://example.com/image2.jpg",
+    "image": "https://vidi-corp.com/wp-content/uploads/2023/11/PowerApps_scalable-1.svg",
     "link": "https://example.com/news2",
     "date": "2025-10-14"
   },
   {
     "title": "News 3",
-    "image": "https://example.com/image2.jpg",
+    "image": "https://vidi-corp.com/wp-content/uploads/2023/11/Clip-path-group-1.svg",
     "link": "https://example.com/news2",
     "date": "2025-10-13"
   },
   {
     "title": "News 4",
-    "image": "https://example.com/image2.jpg",
+    "image": "https://vidi-corp.com/wp-content/uploads/2023/11/PowerPages_scalable.svg",
     "link": "https://example.com/news2",
     "date": "2025-10-12"
   }
