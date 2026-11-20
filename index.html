@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oddset FluidSkin Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            background-color: #ccc;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+        }
+        .iframe-left, .iframe-right {
+            flex: 1;
+            height: 100vh;
+            line-height: 0;
+        }
+        .iframe-center {
+            width: 930px;
+            height: 180px;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="iframe-left">
+            <iframe src="fluidskin_KaDuKaldeDen_Left/index.html"></iframe>
+        </div>
+        <div class="iframe-center">
+            <iframe src="fluidskin_KaDuKaldeDen_Top/index.html"></iframe>
+
+        </div>
+        <div class="iframe-right">
+            <iframe src="fluidskin_KaDuKaldeDen_Right/index.html"></iframe>
+        </div>
+    </div>
+</body>
+</html>
