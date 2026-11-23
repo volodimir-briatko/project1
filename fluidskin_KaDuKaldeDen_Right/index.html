@@ -36,7 +36,7 @@
 </head>
 <body>
 <div id="banner">
-    <video id="vid" muted autoplay loop playsinline preload="auto" poster="assets/poster.jpg"><source src="assets/video.mp4" type="video/mp4"></video>
+    <video id="vid" muted autoplay playsinline preload="auto" poster="assets/poster.jpg"><source src="assets/Rightside_1.mp4" type="video/mp4"></video>
     <div id="grad"></div>
     <svg width="0" height="0" style="position:absolute"><defs>
         <!-- headline shadow from the supplied SVG (offset 8, blur 9.165, #252525), in path units so it scales with the copy -->
@@ -60,7 +60,7 @@
 <script type="text/javascript">
     // Layout in design units. Wide = the 800x1440 layout; narrow = 2-line copy (and stacked legal) on a 520-wide stage.
     // Boxes are [x, y, w, h], y measured on a 1440-high stage that is pinned to the panel bottom.
-    var CFG = {"narrowBelow": 280, "wide": {"w": 800, "gradTop": 686, "box": {"h_full": [34, 657.02, 731.96, 88.43], "logo": [145, 1145, 510, 108.89], "pl_txt": [48.0, 1310.0, 372.25, 89.87], "pl_logo": [471.12, 1314.32, 283.88, 85.66]}}, "narrow": {"w": 520, "gradTop": 514.1, "box": {"h_l1": [119.19, 503.14, 281.61, 88.43], "h_l2": [45.8, 607.57, 428.4, 88.43], "logo": [40, 1026, 440, 93.94], "pl_txt": [40, 1175.26, 440, 106.22], "pl_logo": [110, 1309.48, 300, 90.52]}}};
+    var CFG = {"narrowBelow": 280, "video": {"maxTime": 30, "maxPlays": 5}, "wide": {"w": 800, "gradTop": 686, "box": {"h_full": [34, 657.02, 731.96, 88.43], "logo": [145, 1145, 510, 108.89], "pl_txt": [48.0, 1310.0, 372.25, 89.87], "pl_logo": [471.12, 1314.32, 283.88, 85.66]}}, "narrow": {"w": 520, "gradTop": 514.1, "box": {"h_l1": [119.19, 503.14, 281.61, 88.43], "h_l2": [45.8, 607.57, 428.4, 88.43], "logo": [40, 1026, 440, 93.94], "pl_txt": [40, 1175.26, 440, 106.22], "pl_logo": [110, 1309.48, 300, 90.52]}}};
 
     var banner = document.getElementById("banner"), stage = document.getElementById("stage"), grad = document.getElementById("grad");
     function fit() {
@@ -91,6 +91,16 @@
         if (v.readyState >= 2) start(); else v.addEventListener("loadeddata", start);
         setTimeout(start, 3000);
         var p = v.play(); if (p && p.catch) p.catch(function () {});
+        // Adnami Fluid Skin spec: animation max 30 s, max 5 loops. Each pass always plays to the end;
+        // another pass starts only if it still fits both limits, otherwise the video rests on its last frame.
+        var plays = 1;
+        v.addEventListener("ended", function () {
+            if (plays < CFG.video.maxPlays && (plays + 1) * v.duration <= CFG.video.maxTime) {
+                plays++;
+                v.currentTime = 0;
+                var q = v.play(); if (q && q.catch) q.catch(function () {});
+            }
+        });
     };
 </script>
 <script>// ADNAMI CLICK TRACKING MACRO - DO NOT MODIFY //
