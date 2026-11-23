@@ -54,7 +54,7 @@
 <script type="text/javascript">
     // Layout in design units. Wide = the 800x1440 layout; narrow = 2-line copy (and stacked legal) on a 520-wide stage.
     // Boxes are [x, y, w, h], y measured on a 1440-high stage that is pinned to the panel bottom.
-    var CFG = {"narrowBelow": 280, "video": {"maxTime": 16, "maxPlays": 5, "size": [1920, 1080], "focusX": 0.7, "targetX": 0.5, "focusY": 0.3}, "syncChannel": "oddset-kadu-fluidskin", "anim": {"cycle": 5, "cycles": 3, "headIn": 0.2, "headOut": 4.3, "logoIn": 0.3, "inDur": 0.8, "outDur": 0.4, "outLift": 15}, "wide": {"w": 800, "gradTop": 686, "box": {"h_full": [35, 677.0, 730.0, 68.45], "logo": [145, 1145, 510, 108.89]}}, "narrow": {"w": 520, "gradTop": 535.3, "box": {"h_l1": [131.15, 524.33, 257.7, 67.24], "h_l2": [31.49, 627.89, 457.02, 68.11], "logo": [40, 1026, 440, 93.94]}}};
+    var CFG = {"narrowBelow": 280, "video": {"maxTime": 16, "maxPlays": 5, "size": [1280, 1262], "focusX": 0.5, "targetX": 0.5, "focusY": 0.3}, "syncChannel": "oddset-kadu-fluidskin", "anim": {"cycle": 5, "cycles": 3, "headIn": 0.2, "headOut": 4.3, "logoIn": 0.3, "inDur": 0.8, "outDur": 0.4, "outLift": 15}, "wide": {"w": 800, "gradTop": 686, "box": {"h_full": [35, 677.0, 730.0, 68.45], "logo": [145, 1145, 510, 108.89]}}, "narrow": {"w": 520, "gradTop": 535.3, "box": {"h_l1": [131.15, 524.33, 257.7, 67.24], "h_l2": [31.49, 627.89, 457.02, 68.11], "logo": [40, 1026, 440, 93.94]}}};
 
     var banner = document.getElementById("banner"), stage = document.getElementById("stage"), grad = document.getElementById("grad");
     function fit() {
@@ -71,7 +71,7 @@
         grad.style.top = Math.round(oy + L.gradTop * s) + "px";
         frameVideo(W, H);
     }
-    // Wide (16:9) footage in a tall panel: scale to cover, then slide it so the face (CFG.video.focusX, share of the
+    // Footage wider than the panel: scale to cover, then slide it so the face (CFG.video.focusX, share of the
     // frame width) sits at CFG.video.targetX of the panel, never showing past the frame edges.
     var vid = document.getElementById("vid");
     function frameVideo(W, H) {

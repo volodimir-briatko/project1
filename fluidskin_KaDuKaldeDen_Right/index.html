@@ -58,7 +58,7 @@
 <script type="text/javascript">
     // Layout in design units. Wide = the 800x1440 layout; narrow = 2-line copy (and stacked legal) on a 520-wide stage.
     // Boxes are [x, y, w, h], y measured on a 1440-high stage that is pinned to the panel bottom.
-    var CFG = {"narrowBelow": 280, "video": {"maxTime": 16, "maxPlays": 5, "size": [1920, 1080], "focusX": 0.6, "targetX": 0.5, "focusY": 0.3}, "syncChannel": "oddset-kadu-fluidskin", "anim": {"cycle": 5, "cycles": 3, "headIn": 1.4, "headOut": 4.3, "logoIn": 0.3, "inDur": 0.8, "outDur": 0.4, "outLift": 15}, "wide": {"w": 800, "gradTop": 686, "box": {"h_full": [34, 657.02, 731.96, 88.43], "logo": [145, 1145, 510, 108.89], "pl_txt": [48.0, 1310.0, 372.25, 89.87], "pl_logo": [471.12, 1314.32, 283.88, 85.66]}}, "narrow": {"w": 520, "gradTop": 514.1, "box": {"h_l1": [119.19, 503.14, 281.61, 88.43], "h_l2": [45.8, 607.57, 428.4, 88.43], "logo": [40, 1026, 440, 93.94], "pl_txt": [40, 1175.26, 440, 106.22], "pl_logo": [110, 1309.48, 300, 90.52]}}};
+    var CFG = {"narrowBelow": 280, "video": {"maxTime": 16, "maxPlays": 5, "size": [1280, 1536], "focusX": 0.5, "targetX": 0.5, "focusY": 0.3}, "syncChannel": "oddset-kadu-fluidskin", "anim": {"cycle": 5, "cycles": 3, "headIn": 1.4, "headOut": 4.3, "logoIn": 0.3, "inDur": 0.8, "outDur": 0.4, "outLift": 15}, "wide": {"w": 800, "gradTop": 686, "box": {"h_full": [34, 657.02, 731.96, 88.43], "logo": [145, 1145, 510, 108.89], "pl_txt": [48.0, 1310.0, 372.25, 89.87], "pl_logo": [471.12, 1314.32, 283.88, 85.66]}}, "narrow": {"w": 520, "gradTop": 514.1, "box": {"h_l1": [119.19, 503.14, 281.61, 88.43], "h_l2": [45.8, 607.57, 428.4, 88.43], "logo": [40, 1026, 440, 93.94], "pl_txt": [40, 1175.26, 440, 106.22], "pl_logo": [110, 1309.48, 300, 90.52]}}};
 
     var banner = document.getElementById("banner"), stage = document.getElementById("stage"), grad = document.getElementById("grad");
     function fit() {
@@ -75,7 +75,7 @@
         grad.style.top = Math.round(oy + L.gradTop * s) + "px";
         frameVideo(W, H);
     }
-    // Wide (16:9) footage in a tall panel: scale to cover, then slide it so the face (CFG.video.focusX, share of the
+    // Footage wider than the panel: scale to cover, then slide it so the face (CFG.video.focusX, share of the
     // frame width) sits at CFG.video.targetX of the panel, never showing past the frame edges.
     var vid = document.getElementById("vid");
     function frameVideo(W, H) {
