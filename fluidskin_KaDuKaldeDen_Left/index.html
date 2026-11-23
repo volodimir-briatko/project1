@@ -15,7 +15,7 @@
            Video fills the panel (cover, the face is kept by object-position).
            Copy, logo and legal sit on a stage of design units (800 wide, or 520 wide in the narrow layout),
            scaled by s = min(W / stageWidth, H / 1440) and pinned to the panel bottom (see fit()). */
-        #vid { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 42% 0%; }
+        #vid { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; }
         /* bottom gradient, drawn in code (alpha curve sampled from the BG.png supplied with the layout) */
         #grad { position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none;
                 background: linear-gradient(to bottom, rgba(13,80,160,0) 0%, rgba(13,80,160,0.06) 13%, rgba(13,80,160,0.26) 26.5%,
@@ -23,18 +23,16 @@
         #stage { position: absolute; left: 0; top: 0; height: 1440px; transform-origin: 0 0; pointer-events: none; }
         #stage .it { position: absolute; }
         #stage svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
-        #logo { background: url("assets/logo_oddset.svg") no-repeat 0 0 / 100% 100%; }
+        #logo .an { background: url("assets/logo_oddset.svg") no-repeat 0 0 / 100% 100%; }
         .wide .nl, .narrow .wl { display: none; }
 
-        /* entrance: copy rises in, the logo follows; legal and badge are static */
-        .an { position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; transform: translateY(35%); }
-        .go .an { animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        @keyframes rise { to { opacity: 1; transform: none; } }
+        /* animated layers, driven by render(t) in the script; legal and badge are static */
+        .an { position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; }
     </style>
 </head>
 <body>
 <div id="banner">
-    <video id="vid" muted autoplay playsinline preload="auto" poster="assets/poster.jpg"><source src="assets/Leftside_1.mp4" type="video/mp4"></video>
+    <video id="vid" muted autoplay playsinline preload="auto" poster="assets/poster.jpg"><source src="assets/video.mp4" type="video/mp4"></video>
     <div id="grad"></div>
     <svg width="0" height="0" style="position:absolute"><defs>
         <!-- headline shadow from the supplied SVG (offset 8, blur 9.165, #252525), in path units so it scales with the copy -->
@@ -44,10 +42,10 @@
             <feBlend result="blend" in="SourceGraphic"/>
         </filter></defs></svg>
     <div id="stage">
-        <div class="it wl" id="h_full"><div class="an" style="animation-delay:0s"><svg viewBox="35.53 675.13 729.45 70.32" preserveAspectRatio="none"><path fill="#fff" filter="url(#sh)" d="M35.533,744.200H54.9l4.462,-25.522h0.446L64.09,744.2H85.061l-6.514,-34L97.019,676.38H76.762l-14.01,26.772H62.126l4.73,-26.772H47.491ZM87.019,744.200h19.543l3.124,-9.37h10.619l-0.179,9.37h18.651L138.42,676.38H111.292ZM114.504,719.660l6.961,-22.578h0.357l-0.982,22.578H114.5ZM163.936,744.200h19.721c20.168,0,31.948,-11.779,35.7,-33.018s-7.139,-34.8,-25.522,-34.8H175.894ZM186.959,727.067h-0.535l5.89,-33.554h0.535c5,0,9.013,5.622,7.05,16.777S191.957,727.068,186.959,727.068ZM244.245,745.450c16.956,0,24.63,-7.675,28.378,-28.914l7.139,-40.157H260.13L252.9,717.43c-1.338,7.317,-3.034,10.352,-6.782,10.352s-4.372,-3.035,-3.034,-10.352l7.229,-41.05H230.681l-7.05,40.157C220.24,735.991,226.576,745.451,244.245,745.451ZM295.461,744.200h19.365l4.462,-25.522h0.446l4.284,25.522h20.971l-6.515,-34l18.472,-33.822H336.689l-14.01,26.772h-0.625l4.73,-26.772H307.419ZM346.947,744.200H366.49l3.123,-9.37h10.62l-0.179,9.37h18.651l-0.357,-67.821H371.22ZM374.432,719.660l6.961,-22.578h0.357l-0.982,22.578h-6.336ZM404.232,744.200h34.624l3.035,-17.133H426.9l8.924,-50.688H416.191ZM444.207,744.200H463.93c20.168,0,31.947,-11.779,35.695,-33.018s-7.139,-34.8,-25.522,-34.8H456.166ZM467.231,727.067H466.7l5.89,-33.554h0.535c5,0,9.013,5.622,7.05,16.777S472.229,727.068,467.232,727.068ZM499.888,744.200H536.3l3.034,-17.133H522.376l1.428,-8.3h15.17l3.034,-16.955h-15.17l1.428,-8.3h16.955l3.034,-17.134H511.846ZM563.420,744.200h19.721c20.168,0,31.948,-11.779,35.7,-33.018s-7.139,-34.8,-25.522,-34.8H575.378ZM586.443,727.067h-0.535l5.89,-33.554h0.535c5,0,9.013,5.622,7.05,16.777S591.441,727.068,586.443,727.068ZM619.100,744.200h36.41l3.034,-17.133H641.588l1.427,-8.3h15.171l3.034,-16.955H646.049l1.428,-8.3h16.956l3.034,-17.134h-36.41ZM690.844,744.200H710.3l11.958,-67.821H705.121l-5.354,30.341h-0.178l-5.176,-30.341H674.959L663,744.2h17.134l5.354,-30.341h0.178ZM730.818,714.841l-0.982,4.373h18.74l0.893,-3.838c1.784,-8.3,13.029,-9.9,15.17,-22.131c1.874,-10.53,-3.926,-18.115,-17.669,-18.115c-7.228,0,-14.189,2.231,-20.079,4.819l2.142,15.438c2.677,-1.428,6.782,-3.3,11.155,-3.3c3.569,0,5.354,1.428,4.819,4.284C743.756,703.866,733.494,702.8,730.817,714.842ZM735.369,745.093c6.068,0,10.8,-3.481,11.423,-9.37s-3.392,-9.37,-9.46,-9.37c-6.157,0,-10.8,3.48,-11.422,9.37S729.211,745.094,735.368,745.094Z"/></svg></div></div>
-        <div class="it nl" id="h_l1"><div class="an" style="animation-delay:0s"><svg viewBox="35.53 676.38 244.23 69.07" preserveAspectRatio="none"><path fill="#fff" filter="url(#sh)" d="M35.533,744.200H54.9l4.462,-25.522h0.446L64.09,744.2H85.061l-6.514,-34L97.019,676.38H76.762l-14.01,26.772H62.126l4.73,-26.772H47.491ZM87.019,744.200h19.543l3.124,-9.37h10.619l-0.179,9.37h18.651L138.42,676.38H111.292ZM114.504,719.660l6.961,-22.578h0.357l-0.982,22.578H114.5ZM163.936,744.200h19.721c20.168,0,31.948,-11.779,35.7,-33.018s-7.139,-34.8,-25.522,-34.8H175.894ZM186.959,727.067h-0.535l5.89,-33.554h0.535c5,0,9.013,5.622,7.05,16.777S191.957,727.068,186.959,727.068ZM244.245,745.450c16.956,0,24.63,-7.675,28.378,-28.914l7.139,-40.157H260.13L252.9,717.43c-1.338,7.317,-3.034,10.352,-6.782,10.352s-4.372,-3.035,-3.034,-10.352l7.229,-41.05H230.681l-7.05,40.157C220.24,735.991,226.576,745.451,244.245,745.451Z"/></svg></div></div>
-        <div class="it nl" id="h_l2"><div class="an" style="animation-delay:0.12s"><svg viewBox="295.46 675.13 469.52 69.96" preserveAspectRatio="none"><path fill="#fff" filter="url(#sh)" d="M295.461,744.200h19.365l4.462,-25.522h0.446l4.284,25.522h20.971l-6.515,-34l18.472,-33.822H336.689l-14.01,26.772h-0.625l4.73,-26.772H307.419ZM346.947,744.200H366.49l3.123,-9.37h10.62l-0.179,9.37h18.651l-0.357,-67.821H371.22ZM374.432,719.660l6.961,-22.578h0.357l-0.982,22.578h-6.336ZM404.232,744.200h34.624l3.035,-17.133H426.9l8.924,-50.688H416.191ZM444.207,744.200H463.93c20.168,0,31.947,-11.779,35.695,-33.018s-7.139,-34.8,-25.522,-34.8H456.166ZM467.231,727.067H466.7l5.89,-33.554h0.535c5,0,9.013,5.622,7.05,16.777S472.229,727.068,467.232,727.068ZM499.888,744.200H536.3l3.034,-17.133H522.376l1.428,-8.3h15.17l3.034,-16.955h-15.17l1.428,-8.3h16.955l3.034,-17.134H511.846ZM563.420,744.200h19.721c20.168,0,31.948,-11.779,35.7,-33.018s-7.139,-34.8,-25.522,-34.8H575.378ZM586.443,727.067h-0.535l5.89,-33.554h0.535c5,0,9.013,5.622,7.05,16.777S591.441,727.068,586.443,727.068ZM619.100,744.200h36.41l3.034,-17.133H641.588l1.427,-8.3h15.171l3.034,-16.955H646.049l1.428,-8.3h16.956l3.034,-17.134h-36.41ZM690.844,744.200H710.3l11.958,-67.821H705.121l-5.354,30.341h-0.178l-5.176,-30.341H674.959L663,744.2h17.134l5.354,-30.341h0.178ZM730.818,714.841l-0.982,4.373h18.74l0.893,-3.838c1.784,-8.3,13.029,-9.9,15.17,-22.131c1.874,-10.53,-3.926,-18.115,-17.669,-18.115c-7.228,0,-14.189,2.231,-20.079,4.819l2.142,15.438c2.677,-1.428,6.782,-3.3,11.155,-3.3c3.569,0,5.354,1.428,4.819,4.284C743.756,703.866,733.494,702.8,730.817,714.842ZM735.369,745.093c6.068,0,10.8,-3.481,11.423,-9.37s-3.392,-9.37,-9.46,-9.37c-6.157,0,-10.8,3.48,-11.422,9.37S729.211,745.094,735.368,745.094Z"/></svg></div></div>
-        <div class="it " id="logo"><div class="an" style="animation-delay:0.3s"></div></div>
+        <div class="it wl" id="h_full"><div class="an" data-role="head" data-delay="0"><svg viewBox="65.79 54.05 799.6 74.98" preserveAspectRatio="none"><path fill="#fff" filter="url(#sh)" d="M65.794,127.692H86.44L91.2,100.481h0.476l4.567,27.211H118.6l-6.946,-36.25l19.7,-36.06h-21.6L94.813,83.925H94.147L99.19,55.382H78.543ZM120.687,127.692h20.836l3.33,-9.99h11.323l-0.191,9.99h19.886l-0.381,-72.31H146.566ZM149.987,101.527l7.422,-24.071h0.38l-1.046,24.072h-6.756ZM182.617,82.027h13.32l13.511,-26.641H194.419ZM224.571,127.697H245.6c21.5,0,34.062,-12.559,38.058,-35.2s-7.611,-37.106,-27.211,-37.106H237.325ZM249.119,109.429h-0.571l6.279,-35.774H255.4c5.328,0,9.61,5.994,7.517,17.887S254.451,109.424,249.123,109.424ZM310.196,129.029c18.078,0,26.26,-8.182,30.256,-30.827l7.612,-42.815H327.136l-7.707,43.767c-1.427,7.8,-3.235,11.036,-7.231,11.036s-4.662,-3.235,-3.235,-11.036l7.707,-43.767H295.738L288.222,98.2C284.606,118.939,291.361,129.024,310.2,129.024ZM364.802,127.697h20.646l4.757,-27.211h0.476l4.567,27.211h22.359l-6.946,-36.25l19.695,-36.06h-21.6L393.825,83.925h-0.666L398.2,55.382H377.555ZM419.695,127.697h20.836l3.33,-9.99h11.323L455,127.692h19.886L474.5,55.382H445.578ZM449.000,101.527l7.422,-24.071h0.38l-1.047,24.072H449ZM480.773,127.692h36.916l3.235,-18.268H504.943l9.514,-54.042H493.526ZM523.394,127.692h21.027c21.5,0,34.062,-12.559,38.058,-35.2s-7.612,-37.106,-27.211,-37.106H536.146ZM547.941,109.424h-0.57l6.279,-35.774h0.571c5.328,0,9.61,5.994,7.516,17.887S553.272,109.424,547.944,109.424ZM582.759,127.692h38.819l3.235,-18.268H606.738l1.523,-8.848h16.174L627.67,82.5H611.5l1.523,-8.849H631.1l3.235,-18.268H595.511ZM650.495,127.692h21.027c21.5,0,34.062,-12.559,38.058,-35.2s-7.611,-37.106,-27.211,-37.106H663.248ZM675.043,109.424h-0.571l6.28,-35.774h0.57c5.329,0,9.61,5.994,7.517,17.887S680.374,109.424,675.046,109.424ZM709.860,127.692h38.819l3.235,-18.268H733.84l1.522,-8.848h16.175L754.772,82.5H738.6l1.522,-8.849H758.2l3.235,-18.268H722.613ZM786.352,127.692H807.1l12.749,-72.31H801.578L795.87,87.731h-0.191l-5.518,-32.349H769.419l-12.749,72.31h18.268l5.709,-32.349h0.19ZM828.971,96.392l-1.046,4.662h19.98l0.952,-4.091c1.9,-8.849,13.891,-10.561,16.174,-23.6c2,-11.227,-4.186,-19.314,-18.838,-19.314c-7.707,0,-15.128,2.379,-21.408,5.138l2.284,16.46c2.854,-1.522,7.231,-3.52,11.893,-3.52c3.806,0,5.708,1.522,5.137,4.567C842.771,84.687,831.829,83.545,828.974,96.389ZM833.824,128.646c6.47,0,11.512,-3.71,12.178,-9.99s-3.615,-9.99,-10.085,-9.99c-6.565,0,-11.512,3.711,-12.178,9.99S827.262,128.643,833.827,128.643Z"/></svg></div></div>
+        <div class="it nl" id="h_l1"><div class="an" data-role="head" data-delay="0"><svg viewBox="65.79 55.38 282.27 73.65" preserveAspectRatio="none"><path fill="#fff" filter="url(#sh)" d="M65.794,127.692H86.44L91.2,100.481h0.476l4.567,27.211H118.6l-6.946,-36.25l19.7,-36.06h-21.6L94.813,83.925H94.147L99.19,55.382H78.543ZM120.687,127.692h20.836l3.33,-9.99h11.323l-0.191,9.99h19.886l-0.381,-72.31H146.566ZM149.987,101.527l7.422,-24.071h0.38l-1.046,24.072h-6.756ZM182.617,82.027h13.32l13.511,-26.641H194.419ZM224.571,127.697H245.6c21.5,0,34.062,-12.559,38.058,-35.2s-7.611,-37.106,-27.211,-37.106H237.325ZM249.119,109.429h-0.571l6.279,-35.774H255.4c5.328,0,9.61,5.994,7.517,17.887S254.451,109.424,249.123,109.424ZM310.196,129.029c18.078,0,26.26,-8.182,30.256,-30.827l7.612,-42.815H327.136l-7.707,43.767c-1.427,7.8,-3.235,11.036,-7.231,11.036s-4.662,-3.235,-3.235,-11.036l7.707,-43.767H295.738L288.222,98.2C284.606,118.939,291.361,129.024,310.2,129.024Z"/></svg></div></div>
+        <div class="it nl" id="h_l2"><div class="an" data-role="head" data-delay="0.12"><svg viewBox="364.8 54.05 500.59 74.6" preserveAspectRatio="none"><path fill="#fff" filter="url(#sh)" d="M364.802,127.697h20.646l4.757,-27.211h0.476l4.567,27.211h22.359l-6.946,-36.25l19.695,-36.06h-21.6L393.825,83.925h-0.666L398.2,55.382H377.555ZM419.695,127.697h20.836l3.33,-9.99h11.323L455,127.692h19.886L474.5,55.382H445.578ZM449.000,101.527l7.422,-24.071h0.38l-1.047,24.072H449ZM480.773,127.692h36.916l3.235,-18.268H504.943l9.514,-54.042H493.526ZM523.394,127.692h21.027c21.5,0,34.062,-12.559,38.058,-35.2s-7.612,-37.106,-27.211,-37.106H536.146ZM547.941,109.424h-0.57l6.279,-35.774h0.571c5.328,0,9.61,5.994,7.516,17.887S553.272,109.424,547.944,109.424ZM582.759,127.692h38.819l3.235,-18.268H606.738l1.523,-8.848h16.174L627.67,82.5H611.5l1.523,-8.849H631.1l3.235,-18.268H595.511ZM650.495,127.692h21.027c21.5,0,34.062,-12.559,38.058,-35.2s-7.611,-37.106,-27.211,-37.106H663.248ZM675.043,109.424h-0.571l6.28,-35.774h0.57c5.329,0,9.61,5.994,7.517,17.887S680.374,109.424,675.046,109.424ZM709.860,127.692h38.819l3.235,-18.268H733.84l1.522,-8.848h16.175L754.772,82.5H738.6l1.522,-8.849H758.2l3.235,-18.268H722.613ZM786.352,127.692H807.1l12.749,-72.31H801.578L795.87,87.731h-0.191l-5.518,-32.349H769.419l-12.749,72.31h18.268l5.709,-32.349h0.19ZM828.971,96.392l-1.046,4.662h19.98l0.952,-4.091c1.9,-8.849,13.891,-10.561,16.174,-23.6c2,-11.227,-4.186,-19.314,-18.838,-19.314c-7.707,0,-15.128,2.379,-21.408,5.138l2.284,16.46c2.854,-1.522,7.231,-3.52,11.893,-3.52c3.806,0,5.708,1.522,5.137,4.567C842.771,84.687,831.829,83.545,828.974,96.389ZM833.824,128.646c6.47,0,11.512,-3.71,12.178,-9.99s-3.615,-9.99,-10.085,-9.99c-6.565,0,-11.512,3.711,-12.178,9.99S827.262,128.643,833.827,128.643Z"/></svg></div></div>
+        <div class="it " id="logo"><div class="an" data-role="logo" data-delay="0"></div></div>
     </div>
 
     <div id="hover"></div>
@@ -56,7 +54,7 @@
 <script type="text/javascript">
     // Layout in design units. Wide = the 800x1440 layout; narrow = 2-line copy (and stacked legal) on a 520-wide stage.
     // Boxes are [x, y, w, h], y measured on a 1440-high stage that is pinned to the panel bottom.
-    var CFG = {"narrowBelow": 280, "video": {"maxTime": 30, "maxPlays": 5}, "wide": {"w": 800, "gradTop": 686, "box": {"h_full": [35.53, 675.13, 729.45, 70.32], "logo": [145, 1145, 510, 108.89]}}, "narrow": {"w": 520, "gradTop": 533.5, "box": {"h_l1": [137.88, 522.5, 244.23, 69.07], "h_l2": [25.24, 626.04, 469.52, 69.96], "logo": [40, 1026, 440, 93.94]}}};
+    var CFG = {"narrowBelow": 280, "video": {"maxTime": 16, "maxPlays": 5, "size": [1920, 1080], "focusX": 0.7, "targetX": 0.5, "focusY": 0.3}, "syncChannel": "oddset-kadu-fluidskin", "anim": {"cycle": 5, "cycles": 3, "headIn": 0.2, "headOut": 4.3, "logoIn": 0.3, "inDur": 0.8, "outDur": 0.4, "outLift": 15}, "wide": {"w": 800, "gradTop": 686, "box": {"h_full": [35, 677.0, 730.0, 68.45], "logo": [145, 1145, 510, 108.89]}}, "narrow": {"w": 520, "gradTop": 535.3, "box": {"h_l1": [131.15, 524.33, 257.7, 67.24], "h_l2": [31.49, 627.89, 457.02, 68.11], "logo": [40, 1026, 440, 93.94]}}};
 
     var banner = document.getElementById("banner"), stage = document.getElementById("stage"), grad = document.getElementById("grad");
     function fit() {
@@ -71,13 +69,74 @@
             el.style.left = b[0] + "px"; el.style.top = b[1] + "px"; el.style.width = b[2] + "px"; el.style.height = b[3] + "px";
         }
         grad.style.top = Math.round(oy + L.gradTop * s) + "px";
+        frameVideo(W, H);
+    }
+    // Wide (16:9) footage in a tall panel: scale to cover, then slide it so the face (CFG.video.focusX, share of the
+    // frame width) sits at CFG.video.targetX of the panel, never showing past the frame edges.
+    var vid = document.getElementById("vid");
+    function frameVideo(W, H) {
+        var vw = vid.videoWidth || CFG.video.size[0], vh = vid.videoHeight || CFG.video.size[1];
+        var k = Math.max(W / vw, H / vh), dw = vw * k, dh = vh * k;
+        var x = Math.min(0, Math.max(W - dw, W * CFG.video.targetX - CFG.video.focusX * dw));
+        vid.style.objectPosition = Math.round(x) + "px " + Math.round((H - dh) * CFG.video.focusY) + "px";
+    }
+    vid.addEventListener("loadedmetadata", fit);
+
+    // ---- copy timeline ----
+    // Sequence per cycle: left headline in, then the right one (CFG.anim.headIn per panel), both hold, both out, repeat.
+    // The last cycle keeps the copy on screen. The frame depends only on t, so panels that share t0 show the same moment.
+    var A = CFG.anim, layers = [].slice.call(document.querySelectorAll(".an"));
+    function expoOut(x) { return x >= 1 ? 1 : 1 - Math.pow(2, -10 * x); }
+    function quadIn(x) { return x * x; }
+    // window [a, b) of one cycle: rise in over A.inDur from a, fade out over A.outDur from b (b < 0 = stay)
+    function apply(el, t, a, b, rise) {
+        var o = 0, y = rise;
+        if (t >= a) {
+            var e = expoOut(Math.min(1, (t - a) / A.inDur));
+            o = e; y = rise * (1 - e);
+            if (b >= 0 && t >= b) {
+                var q = quadIn(Math.min(1, (t - b) / A.outDur));
+                o = 1 - q; y = -A.outLift * q;
+            }
+        }
+        el.style.opacity = o.toFixed(3);
+        el.style.transform = y ? "translateY(" + y.toFixed(2) + "%)" : "none";
+    }
+    function render(T) {
+        var c = Math.min(Math.floor(T / A.cycle), A.cycles - 1), t = T - c * A.cycle, last = c === A.cycles - 1;
+        for (var i = 0; i < layers.length; i++) {
+            var el = layers[i], role = el.getAttribute("data-role"), d = +(el.getAttribute("data-delay") || 0);
+            if (role === "head") apply(el, t, A.headIn + d, last ? -1 : A.headOut + d, 35);
+            else if (role === "logo") apply(el, T, A.logoIn, -1, 35);
+        }
+    }
+    var END = A.cycle * A.cycles;
+
+    // ---- panel sync ----
+    // Left, top and right are separate creatives. When they share an origin they agree on the earliest start time
+    // through a BroadcastChannel; otherwise each panel simply runs from its own start.
+    var t0 = 0, bc = null;
+    try { bc = new BroadcastChannel(CFG.syncChannel); } catch (e) { bc = null; }
+    if (bc) bc.onmessage = function (m) {
+        var o = m.data || {};
+        if (o.type !== "t0" || !t0) return;
+        if (o.t0 < t0) t0 = o.t0;                                      // someone started earlier: follow them
+        else if (o.t0 > t0) bc.postMessage({ type: "t0", t0: t0 });    // a later panel: tell it our start
+    };
+    function tick() {
+        var T = (Date.now() - t0) / 1000;
+        render(Math.max(0, T));
+        if (T < END + 1) requestAnimationFrame(tick);
     }
 
     function start() {
         if (start.done) return; start.done = true;
         fit();
+        t0 = Date.now() + 200;                                          // copy starts after the 0.2 s reveal
+        if (bc) try { bc.postMessage({ type: "t0", t0: t0 }); } catch (e) {}
+        render(0);
         banner.className += " on";
-        setTimeout(function () { banner.className += " go"; }, 200);
+        requestAnimationFrame(tick);
     }
     window.addEventListener("resize", fit);
     window.onload = function () {

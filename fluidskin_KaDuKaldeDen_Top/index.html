@@ -7,35 +7,73 @@
     <meta name="ad.size" content="width=930,height=180">
     <style type="text/css">
         body { margin: 0; padding: 0; -moz-text-size-adjust: none; -ms-text-size-adjust: none; -webkit-text-size-adjust: none; -webkit-tap-highlight-color: transparent; }
-        #banner { position: relative; overflow: hidden; width: 100%; height: 100%; min-height: 180px; cursor: pointer; visibility: hidden; opacity: 0; background: #6b6a4e url("assets/top_bg.jpg") no-repeat center / cover; }
+        #banner { position: relative; overflow: hidden; width: 100%; height: 100%; min-height: 180px; cursor: pointer; visibility: hidden; opacity: 0; background: #7a8063 url("assets/top_bg.jpg") no-repeat center / cover; }
         #banner.on { visibility: visible; opacity: 1; transition: opacity 0.2s linear; }
         #hover { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
-        /* layout centred on the panel, positions from the 930x180 frame of the layout */
+        /* 930x180 frame centred on the panel: the logo alone first, then the headline alone, both centred */
         #wrap { position: absolute; left: 50%; top: 0; width: 930px; height: 180px; margin-left: -465px; }
-        #logo { position: absolute; left: 65px; top: 42px; width: 390px; height: 83.27px; }
-        #head { position: absolute; left: 472px; top: 72px; width: 431px; height: 41.55px; }
+        #logo { position: absolute; left: 238.75px; top: 41.7px; width: 452.49px; height: 96.61px; }
+        #head { position: absolute; left: 65.2px; top: 52.51px; width: 799.6px; height: 74.98px; }
         #logo .an { background: url("assets/logo_oddset.svg") no-repeat 0 0 / 100% 100%; }
         #head svg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
-        .an { position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; transform: translateY(-60%); }
-        #head .an { transform: translateY(60%); }
-        .go .an { animation: drop 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-        @keyframes drop { to { opacity: 1; transform: none; } }
+        .an { position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; }
     </style>
 </head>
 <body>
 <div id="banner">
     <div id="wrap">
-        <div id="logo"><div class="an"></div></div>
-        <div id="head"><div class="an" style="animation-delay:0.15s"><svg viewBox="1271.83 71.68 430.77 41.53" preserveAspectRatio="none"><path fill="#fff" d="M1271.830,112.472h11.44L1285.9,97.4h0.27l2.53,15.072h12.38l-3.85,-20.078l10.91,-19.973h-11.96l-8.27,15.81h-0.37l2.79,-15.81h-11.44ZM1302.240,112.472h11.54l1.84,-5.533h6.27l-0.1,5.533h11.01l-0.21,-40.051h-16.02ZM1318.470,97.980l4.11,-13.333h0.21l-0.58,13.333h-3.74ZM1347.660,112.472h11.64c11.91,0,18.87,-6.956,21.08,-19.5s-4.21,-20.553,-15.07,-20.553h-10.59ZM1361.250,102.354h-0.31l3.48,-19.815h0.31c2.95,0,5.33,3.32,4.17,9.907S1364.21,102.354,1361.25,102.354ZM1395.080,113.210c10.02,0,14.55,-4.532,16.76,-17.074l4.22,-23.714h-11.6l-4.26,24.241c-0.79,4.322,-1.8,6.114,-4.01,6.114s-2.58,-1.792,-1.79,-6.114l4.27,-24.241h-11.6l-4.16,23.715C1380.91,107.624,1384.65,113.21,1395.08,113.21ZM1425.330,112.472h11.43L1439.4,97.4h0.26l2.53,15.072h12.39l-3.85,-20.078l10.91,-19.973h-11.96l-8.28,15.81h-0.37l2.8,-15.81h-11.44ZM1455.730,112.472h11.54l1.85,-5.533h6.27l-0.11,5.533h11.02l-0.21,-40.051h-16.02ZM1471.960,97.980l4.11,-13.333h0.22l-0.58,13.333h-3.75ZM1489.560,112.472h20.45l1.79,-10.118h-8.85l5.27,-29.933h-11.6ZM1513.170,112.472h11.65c11.91,0,18.86,-6.956,21.08,-19.5s-4.22,-20.553,-15.08,-20.553h-10.59ZM1526.770,102.354h-0.32l3.48,-19.815h0.31c2.95,0,5.33,3.32,4.17,9.907S1529.72,102.354,1526.77,102.354ZM1546.050,112.472h21.5l1.79,-10.118h-10.01l0.84,-4.9h8.96l1.79,-10.013h-8.95l0.84,-4.9h10.01l1.79,-10.118h-21.5ZM1583.570,112.472h11.64c11.91,0,18.87,-6.956,21.08,-19.5s-4.21,-20.553,-15.07,-20.553h-10.59ZM1597.160,102.354h-0.31l3.48,-19.815h0.31c2.95,0,5.33,3.32,4.17,9.907S1600.12,102.354,1597.16,102.354ZM1616.450,112.472h21.5l1.79,-10.118h-10.01l0.84,-4.9h8.96l1.79,-10.013h-8.96l0.85,-4.9h10.01l1.79,-10.118h-21.5ZM1658.820,112.472h11.48l7.07,-40.051h-10.12l-3.16,17.918h-0.11l-3.06,-17.918h-11.48l-7.07,40.051h10.12l3.16,-17.917h0.11ZM1682.420,95.134l-0.58,2.582h11.07l0.53,-2.266c1.05,-4.9,7.69,-5.85,8.96,-13.069c1.1,-6.219,-2.32,-10.7,-10.44,-10.7a29.979,29.979,0,0,0,-11.86,2.846l1.27,9.117a14.493,14.493,0,0,1,6.59,-1.95c2.1,0,3.16,0.843,2.84,2.529C1690.06,88.652,1684,88.02,1682.42,95.134ZM1685.110,113.000c3.58,0,6.38,-2.055,6.75,-5.533s-2.01,-5.534,-5.59,-5.534c-3.64,0,-6.38,2.056,-6.75,5.534S1681.47,113,1685.11,113Z"/></svg></div></div>
+        <div id="logo"><div class="an" id="logoA"></div></div>
+        <div id="head"><div class="an" id="headA"><svg viewBox="65.79 54.05 799.6 74.98" preserveAspectRatio="none"><path fill="#fff" d="M65.794,127.692H86.44L91.2,100.481h0.476l4.567,27.211H118.6l-6.946,-36.25l19.7,-36.06h-21.6L94.813,83.925H94.147L99.19,55.382H78.543ZM120.687,127.692h20.836l3.33,-9.99h11.323l-0.191,9.99h19.886l-0.381,-72.31H146.566ZM149.987,101.527l7.422,-24.071h0.38l-1.046,24.072h-6.756ZM182.617,82.027h13.32l13.511,-26.641H194.419ZM224.571,127.697H245.6c21.5,0,34.062,-12.559,38.058,-35.2s-7.611,-37.106,-27.211,-37.106H237.325ZM249.119,109.429h-0.571l6.279,-35.774H255.4c5.328,0,9.61,5.994,7.517,17.887S254.451,109.424,249.123,109.424ZM310.196,129.029c18.078,0,26.26,-8.182,30.256,-30.827l7.612,-42.815H327.136l-7.707,43.767c-1.427,7.8,-3.235,11.036,-7.231,11.036s-4.662,-3.235,-3.235,-11.036l7.707,-43.767H295.738L288.222,98.2C284.606,118.939,291.361,129.024,310.2,129.024ZM364.802,127.697h20.646l4.757,-27.211h0.476l4.567,27.211h22.359l-6.946,-36.25l19.695,-36.06h-21.6L393.825,83.925h-0.666L398.2,55.382H377.555ZM419.695,127.697h20.836l3.33,-9.99h11.323L455,127.692h19.886L474.5,55.382H445.578ZM449.000,101.527l7.422,-24.071h0.38l-1.047,24.072H449ZM480.773,127.692h36.916l3.235,-18.268H504.943l9.514,-54.042H493.526ZM523.394,127.692h21.027c21.5,0,34.062,-12.559,38.058,-35.2s-7.612,-37.106,-27.211,-37.106H536.146ZM547.941,109.424h-0.57l6.279,-35.774h0.571c5.328,0,9.61,5.994,7.516,17.887S553.272,109.424,547.944,109.424ZM582.759,127.692h38.819l3.235,-18.268H606.738l1.523,-8.848h16.174L627.67,82.5H611.5l1.523,-8.849H631.1l3.235,-18.268H595.511ZM650.495,127.692h21.027c21.5,0,34.062,-12.559,38.058,-35.2s-7.611,-37.106,-27.211,-37.106H663.248ZM675.043,109.424h-0.571l6.28,-35.774h0.57c5.329,0,9.61,5.994,7.517,17.887S680.374,109.424,675.046,109.424ZM709.860,127.692h38.819l3.235,-18.268H733.84l1.522,-8.848h16.175L754.772,82.5H738.6l1.522,-8.849H758.2l3.235,-18.268H722.613ZM786.352,127.692H807.1l12.749,-72.31H801.578L795.87,87.731h-0.191l-5.518,-32.349H769.419l-12.749,72.31h18.268l5.709,-32.349h0.19ZM828.971,96.392l-1.046,4.662h19.98l0.952,-4.091c1.9,-8.849,13.891,-10.561,16.174,-23.6c2,-11.227,-4.186,-19.314,-18.838,-19.314c-7.707,0,-15.128,2.379,-21.408,5.138l2.284,16.46c2.854,-1.522,7.231,-3.52,11.893,-3.52c3.806,0,5.708,1.522,5.137,4.567C842.771,84.687,831.829,83.545,828.974,96.389ZM833.824,128.646c6.47,0,11.512,-3.71,12.178,-9.99s-3.615,-9.99,-10.085,-9.99c-6.565,0,-11.512,3.711,-12.178,9.99S827.262,128.643,833.827,128.643Z"/></svg></div></div>
     </div>
     <div id="hover"></div>
 </div>
 
 <script type="text/javascript">
+    // Per cycle: Oddset logo alone, then KA' DU KALDE DEN? alone; repeat. The last cycle ends back on the logo.
+    var CFG = {"syncChannel": "oddset-kadu-fluidskin", "anim": {"cycle": 5, "cycles": 3, "logo": [0.2, 2.2], "head": [2.6, 4.6], "logoBack": 4.9, "inDur": 0.8, "outDur": 0.4}};
+    var A = CFG.anim, logoA = document.getElementById("logoA"), headA = document.getElementById("headA");
+    function expoOut(x) { return x >= 1 ? 1 : 1 - Math.pow(2, -10 * x); }
+    function quadIn(x) { return x * x; }
+    // window [a, b) of one cycle: rise in over A.inDur from a, fade out over A.outDur from b (b < 0 = stay)
+    function apply(el, t, a, b, rise) {
+        var o = 0, y = rise;
+        if (t >= a) {
+            var e = expoOut(Math.min(1, (t - a) / A.inDur));
+            o = e; y = rise * (1 - e);
+            if (b >= 0 && t >= b) { var q = quadIn(Math.min(1, (t - b) / A.outDur)); o = 1 - q; y = -0.3 * rise * q; }
+        }
+        el.style.opacity = o.toFixed(3);
+        el.style.transform = y ? "translateY(" + y.toFixed(2) + "%)" : "none";
+    }
+    function render(T) {
+        var c = Math.min(Math.floor(T / A.cycle), A.cycles - 1), t = T - c * A.cycle, last = c === A.cycles - 1;
+        if (last && t >= A.logoBack) apply(logoA, t, A.logoBack, -1, -40);
+        else apply(logoA, t, A.logo[0], A.logo[1], -40);
+        apply(headA, t, A.head[0], A.head[1], 40);
+    }
+    var END = A.cycle * A.cycles;
+
+    // panel sync: the earliest started panel sets t0 for all (see the side panels)
+    var t0 = 0, bc = null;
+    try { bc = new BroadcastChannel(CFG.syncChannel); } catch (e) { bc = null; }
+    if (bc) bc.onmessage = function (m) {
+        var o = m.data || {};
+        if (o.type !== "t0" || !t0) return;
+        if (o.t0 < t0) t0 = o.t0;
+        else if (o.t0 > t0) bc.postMessage({ type: "t0", t0: t0 });
+    };
+    function tick() {
+        var T = (Date.now() - t0) / 1000;
+        render(Math.max(0, T));
+        if (T < END + 1) requestAnimationFrame(tick);
+    }
     window.onload = function () {
         var b = document.getElementById("banner");
+        t0 = Date.now() + 200;
+        if (bc) try { bc.postMessage({ type: "t0", t0: t0 }); } catch (e) {}
+        render(0);
         b.className = "on";
-        setTimeout(function () { b.className = "on go"; }, 200);
+        requestAnimationFrame(tick);
     };
 </script>
 <script>// ADNAMI CLICK TRACKING MACRO - DO NOT MODIFY //
